@@ -1,0 +1,42 @@
+#toggleBtn {
+  z-index: 5;
+  margin-top: 12vh;
+}
+
+.project-image {
+  width: 40vw;
+  height: 40vh;
+}
+.project-body {
+  width: 40vw;
+}
+
+.project-text {
+    margin-inline:auto;
+    margin-inline: 2rem;
+    padding: 1rem;
+    padding-bottom: 1.5rem;
+  transform: translateY(-20px) !important;
+}
+#general-project,#special-project, #core-members, #general-members{
+  padding-top: 10vh;
+    font-weight: 900;
+  }
+
+  #toggleBtn{
+      margin-inline-end: 1.5rem;
+  }
+@media (max-width: 800px) {
+  .project-body {
+    width: 80vw;
+  }
+  .project-image {
+    width: 80vw;
+    height: 30vh;
+  }
+  .project-text {
+    margin-inline: 1rem;
+  }
+
+
+}
