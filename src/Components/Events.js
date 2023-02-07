@@ -1,11 +1,25 @@
 import React from 'react'
 import EventCard from './EventCard'
-
+// import facebook from "../Assets/Image/facebook.svg"
 const Events = () => {
     
   return (
     <div> {/* Upcoming event */}
     <section className="upcoming-event">
+      {/* <div className='container'>
+        <div className=' h-24 w border-4 border-indigo-800 absolte flex flex-row '>
+          <div className='flex-row'>
+          <img alt="fb" className='h-8 w-8'  src={facebook}/>
+          </div>
+          <div className='flex-row'>
+          <h3>Heading</h3>
+          <p>lorem10
+            ffffhffhf hfhshfdshf fhsfhf
+          </p>
+          </div>
+        </div>
+      </div> */}
+
       <div className="text-center font-800 my-2" data-aos="zoom-in">
         <h1 className="fw-bold fs-1">Upcoming Event</h1>
       </div>

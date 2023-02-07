@@ -20,7 +20,7 @@ const Projects = () => {
   async function fatchData() {
     const req = await axios.get("/api/users");
     members = req.data.data.users;
-    console.log(members);
+    // console.log(members);
 
     let temp = members.filter((mem) => {
       return mem.pos === "Core";
@@ -56,7 +56,7 @@ const Projects = () => {
           return (
             <MemberCard
               name={mem.name}
-              image={mem.image}
+              image={mem.Image}
               key={mem._id}
             />
           );
@@ -71,10 +71,10 @@ const Projects = () => {
           return (
             <MemberCard
               name={mem.name}
-              image={mem.image}
+              image={mem.Image}
               facebook={mem.fbUrl}
-              linkedin={mem.linkdinUrl}
-              expertise={mem.expertise}
+              linkedin={mem.liUrl}
+              expertise={mem.cat}
               year={mem.year}
               dept={mem.dept}
               key={mem._id}
@@ -136,10 +136,10 @@ const Projects = () => {
           return (
             <MemberCard
               name={mem.name}
-              image={mem.image}
+              image={mem.Image}
               facebook={mem.fbUrl}
-              linkedin={mem.linkdinUrl}
-              expertise={mem.expertise}
+              linkedin={mem.liUrl}
+              expertise={mem.cat}
               year={mem.year}
               dept={mem.dept}
               key={mem._id}
@@ -159,10 +159,10 @@ const Projects = () => {
           return (
             <MemberCard
               name={mem.name}
-              image={mem.image}
+              image={mem.Image}
               facebook={mem.fbUrl}
-              linkedin={mem.linkdinUrl}
-              expertise={mem.expertise}
+              linkedin={mem.liUrl}
+              expertise={mem.cat}
               year={mem.year}
               dept={mem.dept}
               key={mem._id}
