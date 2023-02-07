@@ -1,0 +1,131 @@
+/* banner css */
+.logo {
+  width: 70px;
+  height: 74px;
+}
+.banner {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-block: 10vh;
+}
+
+.homeImg {
+  display: none;
+}
+.code {
+  font-family: "Satisfy";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+}
+.font {
+  font-family: "Calisto MT";
+  color: #6462d8;
+}
+
+.content {
+  font-family: "Calisto MT";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 50px;
+  margin-inline: 35px;
+  color: #000000;
+}
+.content div {
+  font-family: "Calisto MT";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Upcoming Event */
+.upcoming-event {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* past Event */
+.past-event {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* why to join ric */
+.why-to-join-ric {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.why-to-join-ric div {
+  background-color: #8482f9;
+  padding-block: 30px;
+}
+
+.ric-text {
+  font-weight: 700;
+}
+.why-to-join-ric-img {
+  height: 200px;
+  width: 300px;
+}
+
+/* Contact us */
+.contact-us {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.contact-button {
+  background-color: #6462d8;
+}
+
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+/* media quary */
+@media (min-width: 800px) {
+  .homeImg {
+    display: block;
+    height: 300px;
+  }
+  .banner {
+    height: 90vh;
+    justify-content: center;
+  }
+  .content div {
+    font-size: 50px;
+  }
+  .code {
+    font-size: 30px;
+  }
+  .why-to-join-ric-img {
+    height: 300px;
+    width: 450px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .homeImg {
+    height: 500px;
+    margin-inline: 45px;
+  }
+  .content {
+    padding-inline-start: 30px;
+  }
+  .content div {
+    font-size: 60px;
+  }
+  .code {
+    font-size: 50px;
+  }
+}
