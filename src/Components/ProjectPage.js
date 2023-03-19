@@ -91,24 +91,10 @@ const ProjectPage = () => {
         </div>
       </div>
 
-      {/* Project Team */}
-      <section className="upcoming-event mt-5">
-        <div className="text-center font-800 my-2" data-aos="zoom-in">
-          <h1 className="fw-bold fs-1">Project Name</h1>
-        </div>
-        <div className="container text-center mt-5">
-          <div className="d-flex flex-row flex-wrap justify-content-center">
-            <EventCard />
-            <EventCard />
-            <EventCard />
-          </div>
-        </div>
-      </section>
-
       {/* Project Details */}
       <section className="">
         <div className="text-center font-800 my-4 mx-auto" data-aos="zoom-in">
-          <h1 className="fw-bold fs-1">Project Details</h1>
+          <h1 className="fw-bold fs-1">Event Details</h1>
         </div>
         <div className="project-details-text" data-aos="fade-up"></div>
       </section>
