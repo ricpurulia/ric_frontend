@@ -55,8 +55,8 @@ export default function Home() {
                 <strong>REASON:</strong> Our mission lorem ipsum dolor sit amet,
                 consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat.
+                nostrud exercitat lorem20
+                
               </p>
               <br />
               <p>
