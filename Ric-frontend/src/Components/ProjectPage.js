@@ -1,119 +1,100 @@
-import React from "react";
-import DefultImage from "../Assets/Image/defult-image.jpg";
-import "../Assets/Css/ProjectPage.css";
-import EventCard from "./EventCard";
+import React,{useEffect,useState} from "react";
+import "../Assets/Css/Projects.css";
+import ProjectCard from "./ProjectCard";
+import axios from "../axios";
+const Projects = () => {
+  const [projects, setProjects] = useState([])
+  
+  const toggleCat = (currCat) => {
+    document.getElementById("currCat").innerText = currCat;
+  };
 
-const ProjectPage = () => {
+  async function fatchData() {
+  const req = await axios.get("/allproject");
+  setProjects( req.data.data.project);
+
+}
+useEffect(() => {
+  fatchData();// eslint-disable-next-line 
+}, []);
+console.log(projects);
+
   return (
     <>
-      {/* Project carousel */}
-      <div className="project-carousel">
-        <div
-          id="carouselExampleCaptions"
-          className="carousel slide"
-          data-bs-ride="false"
+
+      {/* toggle button */}
+      <div
+        id="toggleBtn"
+        className="btn-group position-fixed fw-bold top-0 end-0"
+      >
+        <button
+          style={{ backgroundColor: "#6462d8" }}
+          type="button"
+          className="btn btn-secondary dropdown-toggle "
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
         >
-          <div className="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to="0"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleCaptions"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-            ></button>
-          </div>
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img src={DefultImage} className="d-block w-100" alt="..." />
-              <div className="carousel-caption d-none d-md-block">
-                <h5>First slide label</h5>
-                <p>
-                  Some representative placeholder content for the first slide.
-                </p>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <img src={DefultImage} className="d-block w-100" alt="..." />
-              <div className="carousel-caption d-none d-md-block">
-                <h5>Second slide label</h5>
-                <p>
-                  Some representative placeholder content for the second slide.
-                </p>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <img src={DefultImage} className="d-block w-100" alt="..." />
-              <div className="carousel-caption d-none d-md-block">
-                <h5>Third slide label</h5>
-                <p>
-                  Some representative placeholder content for the third slide.
-                </p>
-              </div>
-            </div>
-          </div>
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Next</span>
-          </button>
-        </div>
+          <span id="currCat" className="text-white">
+            Special Project
+          </span>
+        </button>
+        <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li>
+            <a
+              className="dropdown-item"
+              href="#special-project"
+              onClick={() => {
+                toggleCat("Special Project");
+              }}
+            >
+              Special Projects
+            </a>
+            <li></li>
+            <a
+              className="dropdown-item"
+              href="#general-project"
+              onClick={() => {
+                toggleCat("General Project");
+              }}
+            >
+              General Project
+            </a>
+          </li>
+        </ul>
       </div>
 
-      {/* Project Team */}
-      <section className="upcoming-event mt-5">
-        <div className="text-center font-800 my-2" data-aos="zoom-in">
-          <h1 className="fw-bold fs-1">Project Name</h1>
-        </div>
-        <div className="container text-center mt-5">
-          <div className="d-flex flex-row flex-wrap justify-content-center">
-            <EventCard />
-            <EventCard />
-            <EventCard />
-          </div>
-        </div>
-      </section>
+      {/* speacial project */}
 
-      {/* Project Details */}
-      <section className="">
-        <div className="text-center font-800 my-4 mx-auto" data-aos="zoom-in">
-          <h1 className="fw-bold fs-1">Project Details</h1>
-        </div>
-        <div className="project-details-text" data-aos="fade-up"></div>
-      </section>
+      <div className="text-center fs-1" data-aos="zoom-in">
+        <h1 id="special-project">Special Project</h1>
+      </div>
+
+      {/* Project card */}
+      <div className="porjectCards d-flex flex-wrap justify-content-center m-5">
+        {projects.map((pjt)=>{
+          return(
+
+            <ProjectCard id={pjt._id} name={pjt.name} dsc={pjt.description}  />
+          )
+        })}
+
+
+      </div>
+
+      {/* Genreal project */}
+      <div className="text-center fs-1 mt-5" data-aos="zoom-in">
+        <h1 id="general-project">General Project</h1>
+      </div>
+
+      {/* Project card */}
+      <div className="porjectCards d-flex flex-wrap justify-content-center m-5">
+        {/* <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard /> */}
+      </div>
     </>
   );
 };
 
-export default ProjectPage;
+export default Projects;

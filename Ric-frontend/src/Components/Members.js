@@ -8,7 +8,7 @@ const Projects = () => {
     document.getElementById("currCat").innerText = currCat;
   };
   let members = {};
-  
+
   const [faculty, setFaculty] = useState([]);
   const [convener, setConvener] = useState([]);
   const [core, setCore] = useState([]);
@@ -16,23 +16,27 @@ const Projects = () => {
 
   // let core = {};
   // let general = {};
+  // console.log(process.env.REACT_APP_BACKEND);
 
   async function fatchData() {
-    const req = await axios.get("/api/users");
-    members = req.data.data.user;
+    const req = await axios.get("/alluser");
+
+    // console.log(req.data.data);
+
+    members = req.data.data.users;
 
     let temp = members.filter((mem) => {
       return mem.pos === "Core";
     });
     setCore(core.concat(temp));
 
-    temp = members.filter((mem) =>{
-      return mem.pos === "Faculty";
+    temp = members.filter((mem) => {
+      return mem.pos === "faculty";
     })
     setFaculty(faculty.concat(temp));
-    
-    temp = members.filter((mem) =>{
-      return mem.pos === "Convener";
+
+    temp = members.filter((mem) => {
+      return mem.pos === "Convenor";
     })
     setConvener(convener.concat(temp));
 
@@ -44,39 +48,47 @@ const Projects = () => {
   useEffect(() => {
     fatchData();// eslint-disable-next-line 
   }, []);
+
+ if(!members){ return(
+  <>
+  loading
+  </>
+ )}
+ else{
   return (
     <>
-    {/* Faculty Advisor Section */}
+      {/* Faculty Advisor Section */}
       <div className="text-center fs-1" data-aos="zoom-in">
         <h1 id="core-members">Faculty Advisor</h1>
       </div>
       <div className="porjectCards d-flex flex-wrap justify-content-center m-5">
-      {faculty.map((mem) => {
+        {faculty.map((mem) => {
           return (
+
             <MemberCard
               name={mem.name}
-              image={mem.image}
+              image={mem.Image}
               key={mem._id}
-            />
+            />||<>load</>
           );
-        })}
+        })||<>load</>}
       </div>
       <div className="text-center fs-1" data-aos="zoom-in">
         <h1 id="core-members">Student Convener</h1>
       </div>
       {/* Convener Section */}
       <div className="porjectCards d-flex flex-wrap justify-content-center m-5">
-      {convener.map((mem) => {
+        {convener.map((mem) => {
           return (
             <MemberCard
-            name={mem.name}
-            image={mem.image}
-            facebook={mem.fbUrl}
-            linkedin={mem.liUrl}
-            expertise={mem.expertise}
-            year={mem.year}
-            dept={mem.dept}
-            key={mem._id}
+              name={mem.name}
+              image={mem.Image}
+              facebook={mem.fbUrl}
+              linkedin={mem.liUrl}
+              expertise={mem.expertise}
+              year={mem.year}
+              dept={mem.dept}
+              key={mem._id}
             />
           );
         })}
@@ -135,7 +147,7 @@ const Projects = () => {
           return (
             <MemberCard
               name={mem.name}
-              image={mem.image}
+              image={mem.Image}
               facebook={mem.fbUrl}
               linkedin={mem.liUrl}
               expertise={mem.expertise}
@@ -158,7 +170,7 @@ const Projects = () => {
           return (
             <MemberCard
               name={mem.name}
-              image={mem.image}
+              image={mem.Image}
               facebook={mem.fbUrl}
               linkedin={mem.liUrl}
               expertise={mem.expertise}
@@ -171,6 +183,7 @@ const Projects = () => {
       </div>
     </>
   );
+      }
 };
 
 export default Projects;
