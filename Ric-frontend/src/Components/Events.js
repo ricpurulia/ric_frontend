@@ -24,6 +24,8 @@ function Events() {
 
 
 
+
+
       <div className=" carousel-inner  d-flex lg:justify-content-center overflow-auto">
       {events.map((evt)=>{
           return(
@@ -33,15 +35,15 @@ function Events() {
             <img src={logo} alt="" />
           </div>
           <div className="" >
-            <div className="heading px-3">
+            <div className="heading px-3" data-aos="fade-left" data-aos-duration="2000">
               {evt.name}
             </div>
-            <div className="vanue px-5">
+            <div className="vanue px-5" data-aos="zoom-in" >
 
               ECE Seminer Hall
 
             </div>
-            <div className="date text-end">
+            <div className="date text-end" data-aos="fade-right"   >
               at {evt.startDate} of May 2023
             </div>
           </div>
@@ -50,7 +52,7 @@ function Events() {
 )
 })}
       </div>
-
+      
   
       
 
@@ -80,7 +82,7 @@ function Events() {
             <img src={logo} alt="" />
           </div>
           <div className="" >
-            <div className="heading px-3">
+            <div className="heading px-3" data-aos="fade-left" data-aos-duration="2000">
               {evt.name}
             </div>
             <div className="vanue px-5">
@@ -88,7 +90,7 @@ function Events() {
               ECE Seminer Hall
 
             </div>
-            <div className="date text-end">
+            <div className="date text-end" data-aos="fade-right">
               at {evt.startDate} of May 2023
             </div>
           </div>

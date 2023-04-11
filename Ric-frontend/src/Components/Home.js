@@ -46,7 +46,7 @@ export default function Home() {
             <div
               className="col-sm-12 col-lg-8"
               data-aos="fade-left"
-              data-aos-duration="2000"
+             
             >
               <div className="ric-text fs-1">
                 Why to join <strong className="text-black "> RIC? </strong>
