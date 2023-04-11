@@ -82,6 +82,7 @@ export default function EventPage() {
               </div>
             </div>
           </div>
+          
           <button
             className="carousel-control-prev"
             type="button"
@@ -106,6 +107,7 @@ export default function EventPage() {
             ></span>
             <span className="visually-hidden">Next</span>
           </button>
+
         </div>
       </div>
 

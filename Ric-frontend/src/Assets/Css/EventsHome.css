@@ -1,0 +1,57 @@
+.bg{
+    margin: 5px;
+    /* position: absolute; */
+width: 382px;
+height: 101px;
+
+background: #D9D9D9;
+border-radius: 15.6944px;
+}
+.img{
+    /* position: absolute; */
+    padding: 1px;
+    margin-top: 15px;
+    margin-left: 10px;
+width: 68.76px;
+height: 87px;
+}
+.heading{
+    /* position: absolute; */
+width: 300px;
+height: 34px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 29.1048px;
+line-height: 35px;
+
+color: #555151;
+}
+.venue{
+    position: absolute;
+width: 214px;
+height: 20.76px;
+left: 200px;
+text-align: end;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20.2966px;
+line-height: 25px;
+color: #575252;
+}
+.date{
+    
+/* position: absolute; */
+width: 250px;
+height: 16.39px;
+
+font-family: 'Inter';
+font-style: italic;
+font-weight: 400;
+font-size: 16.01px;
+line-height: 19px;
+
+color: #696565;
+}

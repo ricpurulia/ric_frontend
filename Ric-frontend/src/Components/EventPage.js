@@ -16,7 +16,6 @@ const Events = () => {
   useEffect(() => {
     fatchData();// eslint-disable-next-line 
   }, []);
-  console.log(events);
     
   return (
     <div className="mt-1"> {/* Upcoming event */}
