@@ -3,14 +3,18 @@ import React,{useState,useEffect} from "react";
 import axios from "../axios";
 import EventCard from './EventCard'
 import "../Assets/Css/Events.css"
+import Loading from "./Loading";
 
 const Events = () => {
 
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   async function fatchData() {
+    setLoading(true)
     const req = await axios.get("/getAllEvent");
     setEvents( req.data.data.event);
+    setLoading(false)
   
   }
   useEffect(() => {
@@ -24,16 +28,16 @@ const Events = () => {
         <h1 className="fw-bold fs-1">Upcoming Event</h1>
       </div>
       <div className="container text-center mt-3 ">
-        <div className="d-flex flex-row flex-wrap justify-content-center">
+        <div className="d-flex flex-row flex-wrap justify-content-evenly">
           {/* <EventBar/> */}
 
-          {events.map((evt)=>{
+          {!loading? events.map((evt)=>{
           return(
 
-            <EventCard id={evt._id} name={evt.name} topic={evt.topic}/>
+            <EventCard key={evt._id} id={evt._id} name={evt.name} topic={evt.topic}/>
  
           )
-        })}
+        }): <Loading/>}
 
         
    
@@ -47,14 +51,14 @@ const Events = () => {
         <h1 className="fw-bold fs-1">Past Event</h1>
       </div>
       <div className="container text-center mt-3 ">
-        <div className="d-flex flex-row flex-wrap justify-content-center">
-        {events.map((evt)=>{
+        <div className="d-flex flex-row flex-wrap justify-content-evenly">
+        {!loading? events.map((evt)=>{
           return(
 
-            <EventCard name={evt.name} topic={evt.topic}/>
+            <EventCard key={evt._id} id={evt._id} name={evt.name} topic={evt.topic}/>
  
           )
-        })}
+        }):<Loading/>}
         </div>
       </div>
     </section></div>

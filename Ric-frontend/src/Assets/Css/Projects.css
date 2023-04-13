@@ -1,6 +1,8 @@
 #toggleBtn {
   z-index: 5;
   margin-top: 12vh;
+  margin-inline-end: 1.5rem;
+
 }
 
 .project-image {
@@ -23,15 +25,15 @@
     font-weight: 900;
   }
 
-  #toggleBtn{
-      margin-inline-end: 1.5rem;
-  }
-@media (max-width: 800px) {
-  .project-body {
-    width: 80vw;
-  }
-  .project-image {
-    width: 80vw;
+  @media (max-width: 800px) {
+    #toggleBtn{
+      margin-top: 130px;
+    }
+    .project-body {
+      width: 80vw;
+    }
+    .project-image {
+      width: 80vw;
     height: 30vh;
   }
   .project-text {

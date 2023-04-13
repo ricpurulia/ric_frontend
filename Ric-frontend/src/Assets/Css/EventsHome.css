@@ -55,3 +55,8 @@ line-height: 19px;
 
 color: #696565;
 }
+
+.carousel-control-next-icon,.carousel-control-prev-icon{
+    background-color: gray;
+    color: white;
+}

@@ -2,22 +2,25 @@ import React,{useEffect,useState} from "react";
 import "../Assets/Css/Projects.css";
 import ProjectCard from "./ProjectCard";
 import axios from "../axios";
+import Loading from "./Loading";
 const Projects = () => {
   const [projects, setProjects] = useState([])
+  const [loading, setLoading] = useState(false)
   
   const toggleCat = (currCat) => {
     document.getElementById("currCat").innerText = currCat;
   };
 
   async function fatchData() {
-  const req = await axios.get("/allproject");
-  setProjects( req.data.data.project);
+    setLoading(true)
+    const req = await axios.get("/allproject");
+    setProjects( req.data.data.project);
+    setLoading(false)
 
 }
 useEffect(() => {
   fatchData();// eslint-disable-next-line 
 }, []);
-console.log(projects);
 
   return (
     <>
@@ -39,7 +42,7 @@ console.log(projects);
           </span>
         </button>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li>
+          <ul>
             <a
               className="dropdown-item"
               href="#special-project"
@@ -59,7 +62,7 @@ console.log(projects);
             >
               General Project
             </a>
-          </li>
+          </ul>
         </ul>
       </div>
 
@@ -71,12 +74,12 @@ console.log(projects);
 
       {/* Project card */}
       <div className="porjectCards d-flex flex-wrap justify-content-center m-5">
-        {projects.map((pjt)=>{
+        {!loading ? projects.map((pjt)=>{
           return(
 
-            <ProjectCard id={pjt._id} name={pjt.name} dsc={pjt.description}  />
+            <ProjectCard key={pjt._id} id={pjt._id} name={pjt.name} dsc={pjt.description}  />
           )
-        })}
+        }): <Loading/>}
 
 
       </div>

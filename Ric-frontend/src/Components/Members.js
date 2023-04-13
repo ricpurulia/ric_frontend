@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../Assets/Css/Projects.css";
 import MemberCard from "../Components/MemberCard";
 import axios from "../axios";
+import Loading from "./Loading";
 
 const Projects = () => {
   const toggleCat = (currCat) => {
@@ -13,12 +14,14 @@ const Projects = () => {
   const [convener, setConvener] = useState([]);
   const [core, setCore] = useState([]);
   const [general, setGeneral] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   // let core = {};
   // let general = {};
   // console.log(process.env.REACT_APP_BACKEND);
 
   async function fatchData() {
+    setLoading(true)
     const req = await axios.get("/alluser");
 
     // console.log(req.data.data);
@@ -44,6 +47,7 @@ const Projects = () => {
       return mem.pos === "General";
     });
     setGeneral(general.concat(temp));
+    setLoading(false)
   }
   useEffect(() => {
     fatchData();// eslint-disable-next-line 
@@ -62,23 +66,23 @@ const Projects = () => {
         <h1 id="core-members">Faculty Advisor</h1>
       </div>
       <div className="porjectCards d-flex flex-wrap justify-content-center m-5">
-        {faculty.map((mem) => {
+        {!loading ? faculty.map((mem) => {
           return (
 
             <MemberCard
               name={mem.name}
               image={mem.Image}
               key={mem._id}
-            />||<>load</>
+            />
           );
-        })||<>load</>}
+        }): <Loading/>}
       </div>
       <div className="text-center fs-1" data-aos="zoom-in">
         <h1 id="core-members">Student Convener</h1>
       </div>
       {/* Convener Section */}
       <div className="porjectCards d-flex flex-wrap justify-content-center m-5">
-        {convener.map((mem) => {
+        {!loading? convener.map((mem) => {
           return (
             <MemberCard
               name={mem.name}
@@ -91,7 +95,7 @@ const Projects = () => {
               key={mem._id}
             />
           );
-        })}
+        }):<Loading/>}
       </div>
       <div className="text-center fs-1" data-aos="zoom-in">
         <h1 id="core-members">Core Members</h1>
@@ -114,7 +118,7 @@ const Projects = () => {
           </span>
         </button>
         <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-          <li>
+          <ul>
             <a
               className="dropdown-item"
               href="#core-members"
@@ -134,7 +138,7 @@ const Projects = () => {
             >
               General Members
             </a>
-          </li>
+          </ul>
         </ul>
       </div>
 
@@ -143,7 +147,7 @@ const Projects = () => {
         {/* {core.map((mem) => {
           return <MemberCard name={mem.name} />;
         })} */}
-        {core.map((mem) => {
+        {!loading? core.map((mem) => {
           return (
             <MemberCard
               name={mem.name}
@@ -156,7 +160,7 @@ const Projects = () => {
               key={mem._id}
             />
           );
-        })}
+        }): <Loading/>}
       </div>
 
       {/* Genreal project */}
@@ -166,7 +170,7 @@ const Projects = () => {
 
       {/* Project card */}
       <div className="porjectCards d-flex flex-wrap justify-content-center m-5">
-        {general.map((mem) => {
+        {!loading? general.map((mem) => {
           return (
             <MemberCard
               name={mem.name}
@@ -179,7 +183,7 @@ const Projects = () => {
               key={mem._id}
             />
           );
-        })}
+        }): <Loading/>}
       </div>
     </>
   );

@@ -1,104 +1,125 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from "../axios";
 import logo from "../Assets/Image/logo.png";
-import '../Assets/Css/EventsHome.css'
+import "../Assets/Css/EventsHome.css";
+import Loading from "./Loading";
 function Events() {
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(false)
 
   async function fatchData() {
+    setLoading(true)
     const req = await axios.get("/getAllEvent");
-    setEvents( req.data.data.event);
-  
+    setEvents(req.data.data.event);
+    setLoading(false)
   }
   useEffect(() => {
-    fatchData();// eslint-disable-next-line 
+    fatchData(); // eslint-disable-next-line
   }, []);
 
   return (
     <div>
+      {/* Upcoming Event */}
       <div className="text-center font-800 my-2 mt-10" data-aos="zoom-in">
-        <h1 className="fw-bold fs-1">Upcoming Event</h1>
+        <h1 className="fw-bold fs-1 mb-3">Upcoming Event</h1>
       </div>
 
-
-
-
-
-
-
-      <div className=" carousel-inner  d-flex lg:justify-content-center overflow-auto">
-      {events.map((evt)=>{
-          return(
-            <a href={'/event/'+evt.id}>
-        <div className="carousel-item  bg d-flex">
-          <div className=" img d-flex">
-            <img src={logo} alt="" />
-          </div>
-          <div className="" >
-            <div className="heading px-3" data-aos="fade-left" data-aos-duration="2000">
-              {evt.name}
-            </div>
-            <div className="vanue px-5" data-aos="zoom-in" >
-
-              ECE Seminer Hall
-
-            </div>
-            <div className="date text-end" data-aos="fade-right"   >
-              at {evt.startDate} of May 2023
+      {!loading? 
+      <div
+        id="carouselExampleControls"
+        className="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div className="carousel-inner">
+          {events.map((event, index)=>{
+            return <div key={event._id} className={index===0?"carousel-item active": "carousel-item"}>
+            <div className="d-flex m-auto bg">
+              <img src={logo} alt=".." />{" "}
+              <div className="d-">
+                <div className="heading">{event.name}</div>
+                <div className="vanue px-5" data-aos="zoom-in">
+                  ECE Seminer Hall
+                </div>
+                <div className="date text-end" data-aos="fade-right">
+                    at {event.startDate} of May 2023
+                  </div>
+              </div>
             </div>
           </div>
+          })}
         </div>
-        </a>
-)
-})}
-      </div>
-      
-  
-      
+        <button
+          className="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="prev"
+        >
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button
+          className="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls"
+          data-bs-slide="next"
+        >
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>:<Loading/>
+}
 
 
-        
-      {/* <div className="d-flex w-25 flex-row m-5 border rounded">
-        <div className="p-1 text-center align-item-center  ">
-          <img src={logo} alt="logo" style={{height:"60px"}}/>
-        </div>
-        <div className="pt-1 justify-content-center  ">
-         <h5>Christ Mas</h5>
-         <p className="fo lh-1 fs-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, architecto!</p>
-        </div>
-      </div> */}
 
-
-
+      {/* Past Event */}
       <div className="text-center font-800 mt-5" data-aos="zoom-in">
         <h1 className="fw-bold fs-1">Past Event</h1>
       </div>
-      <div className=" carousel-inner  d-flex lg:justify-content-center overflow-auto">
-      {events.map((evt)=>{
-          return(
-            <a href={'/event/'+evt.id}>
-        <div className="carousel-item  bg d-flex">
-          <div className=" img d-flex">
-            <img src={logo} alt="" />
-          </div>
-          <div className="" >
-            <div className="heading px-3" data-aos="fade-left" data-aos-duration="2000">
-              {evt.name}
-            </div>
-            <div className="vanue px-5">
 
-              ECE Seminer Hall
 
-            </div>
-            <div className="date text-end" data-aos="fade-right">
-              at {evt.startDate} of May 2023
+      {!loading? 
+      <div
+        id="carouselExampleControls2"
+        className="carousel slide"
+        data-bs-ride="carousel"
+      >
+        <div className="carousel-inner">
+          {events.map((event, index)=>{
+            return <div key={event._id} className={index===0?"carousel-item active": "carousel-item"}>
+            <div className="d-flex m-auto bg">
+              <img src={logo} alt=".." />{" "}
+              <div className="d-">
+                <div className="heading">{event.name}</div>
+                <div className="vanue px-5" data-aos="zoom-in">
+                  ECE Seminer Hall
+                </div>
+                <div className="date text-end" data-aos="fade-right">
+                    at {event.startDate} of May 2023
+                  </div>
+              </div>
             </div>
           </div>
+          })}
         </div>
-        </a>
-)
-})}
-      </div>
+        <button
+          className="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleControls2"
+          data-bs-slide="prev"
+        >
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button
+          className="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleControls2"
+          data-bs-slide="next"
+        >
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>:<Loading/>}
     </div>
   );
 }
