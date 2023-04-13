@@ -12,7 +12,7 @@ const Events = () => {
 
   async function fatchData() {
     setLoading(true)
-    const req = await axios.get("/getAllEvent");
+    const req = await axios.get("/allevent");
     setEvents( req.data.data.event);
     setLoading(false)
   
