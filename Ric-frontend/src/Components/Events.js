@@ -6,7 +6,7 @@ function Events() {
   const [events, setEvents] = useState([]);
 
   async function fatchData() {
-    const req = await axios.get("/getAllEvent");
+    const req = await axios.get("/allevent");
     setEvents( req.data.data.event);
   
   }
@@ -29,7 +29,7 @@ function Events() {
       <div className=" carousel-inner  d-flex lg:justify-content-center overflow-auto">
       {events.map((evt)=>{
           return(
-            <a href={'/event/'+evt.id}>
+            <a href={'/event/'+evt.id} key={evt.id}>
         <div className="carousel-item  bg d-flex">
           <div className=" img d-flex">
             <img src={logo} alt="" />
@@ -76,7 +76,7 @@ function Events() {
       <div className=" carousel-inner  d-flex lg:justify-content-center overflow-auto">
       {events.map((evt)=>{
           return(
-            <a href={'/event/'+evt.id}>
+            <a href={'/event/'+evt.id} key={evt.id}>
         <div className="carousel-item  bg d-flex">
           <div className=" img d-flex">
             <img src={logo} alt="" />

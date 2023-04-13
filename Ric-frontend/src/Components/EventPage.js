@@ -9,7 +9,7 @@ const Events = () => {
   const [events, setEvents] = useState([]);
 
   async function fatchData() {
-    const req = await axios.get("/getAllEvent");
+    const req = await axios.get("/allevent");
     setEvents( req.data.data.event);
   
   }

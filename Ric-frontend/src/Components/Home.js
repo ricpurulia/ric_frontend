@@ -1,10 +1,22 @@
-import React from "react";
+import React,{useState} from "react";
 import DefultImage from "../Assets/Image/defult-image.jpg";
 import bannerImage from "../Assets/Image/banner-image.png";
 import Events from "./Events";
 import "../Assets/Css/Home.css"; 
 
 export default function Home() {
+const [name, setName] = useState("");
+const [email, setEmail] = useState("");
+const [phone, setPhone] = useState("");
+const [message, setMessage] = useState("");
+
+const onSubmitHandle= async (e)=>{
+e.preventDefault();
+
+console.log(name,email,phone,message);
+
+}
+
 
   return (
     <div>
@@ -77,7 +89,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Anout us */}
+      {/* About us */}
       <section className="about-us container my-5">
         <div className="text-center font-800 my-4" data-aos="zoom-in">
           <h1 className="fw-bold fs-1">About Us</h1>
@@ -113,12 +125,12 @@ export default function Home() {
         <div className="container">
           <div className="row justify-content-center">
             <div className=" col-lg-8">
-              <form>
+              <form onSubmit={onSubmitHandle}>
                 <div className="row row-sm-offset">
                   <div className="col-md-4">
                     <div className="form-group">
                       <label className="form-control-label">Name</label>
-                      <input type="text" className="form-control" name="name" />
+                      <input type="text" className="form-control" value={name} onChange={(e)=>setName(e.target.value)} name="name" />
                     </div>
                   </div>
                   <div className="col-md-4">
@@ -126,7 +138,7 @@ export default function Home() {
                       <label className="form-control-label">Email</label>
                       <input
                         type="email"
-                        className="form-control"
+                        className="form-control" value={email} onChange={(e)=>setEmail(e.target.value)}
                         name="email"
                       />
                     </div>
@@ -134,7 +146,7 @@ export default function Home() {
                   <div className="col-md-4">
                     <div className="form-group">
                       <label className="form-control-label">Phone</label>
-                      <input type="tel" className="form-control" name="phone" />
+                      <input type="tel" className="form-control" value={phone} onChange={(e)=>setPhone(e.target.value)} name="phone" />
                     </div>
                   </div>
                 </div>
@@ -142,13 +154,13 @@ export default function Home() {
                   <label className="form-control-label">Message</label>
                   <textarea
                     type="text"
-                    className="form-control"
-                    name="message"
+                    className="form-control" value={message} onChange={(e)=>setMessage(e.target.value)}
+                    name="message" 
                     rows="7"
                   ></textarea>
                 </div>
                 <div className="text-center fs-2 mt-3 ">
-                  <button className="contact-button text-white border border-white rounded-pill px-4">
+                  <button name="submit" className="contact-button text-white border border-white rounded-pill px-4">
                     Submit
                   </button>
                 </div>
