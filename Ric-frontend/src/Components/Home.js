@@ -3,6 +3,8 @@ import DefultImage from "../Assets/Image/defult-image.jpg";
 import bannerImage from "../Assets/Image/banner-image.png";
 import Events from "./Events";
 import "../Assets/Css/Home.css"; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Home() {
 const [name, setName] = useState("");
@@ -10,17 +12,56 @@ const [email, setEmail] = useState("");
 const [phone, setPhone] = useState("");
 const [message, setMessage] = useState("");
 
-const onSubmitHandle= async (e)=>{
-e.preventDefault();
 
-console.log(name,email,phone,message);
 
-}
+
+
+
+
+const onSubmitHandle = async (e) => {
+  e.preventDefault();
+  const contentType = "application/json";
+
+  let contactreq = {
+    name,
+    email,
+    phone,
+    message
+  };
+  let response = await fetch("https://ricrkmgec.onrender.com/api/contactus", {
+    method: "POST",
+    headers: {
+      Accept: contentType,
+      "Content-Type": contentType,
+    },
+    body: JSON.stringify(contactreq),
+  });
+
+  let data = await response.json();
+
+  if (data.succes) {
+    setName("");
+    setEmail("");
+    setPhone("");
+    setMessage("");
+    console.log(data.message);
+
+    toast.success("Your Message has been sent");
+  } else {
+    return toast.error("Something is wrong");
+  }
+};
+
+
+
+
+
+
 
 
   return (
     <div>
-       
+       <ToastContainer />
       {/* header profile */}
       <header>
         {/* home banner */}
@@ -130,7 +171,7 @@ console.log(name,email,phone,message);
                   <div className="col-md-4">
                     <div className="form-group">
                       <label className="form-control-label">Name</label>
-                      <input type="text" className="form-control" value={name} onChange={(e)=>setName(e.target.value)} name="name" />
+                      <input type="text" className="form-control" value={name} onChange={(e)=>setName(e.target.value)} name="name"  required />
                     </div>
                   </div>
                   <div className="col-md-4">
@@ -140,13 +181,14 @@ console.log(name,email,phone,message);
                         type="email"
                         className="form-control" value={email} onChange={(e)=>setEmail(e.target.value)}
                         name="email"
+                        required
                       />
                     </div>
                   </div>
                   <div className="col-md-4">
                     <div className="form-group">
                       <label className="form-control-label">Phone</label>
-                      <input type="tel" className="form-control" value={phone} onChange={(e)=>setPhone(e.target.value)} name="phone" />
+                      <input type="tel" className="form-control" value={phone} onChange={(e)=>setPhone(e.target.value)} name="phone" required />
                     </div>
                   </div>
                 </div>
@@ -157,6 +199,7 @@ console.log(name,email,phone,message);
                     className="form-control" value={message} onChange={(e)=>setMessage(e.target.value)}
                     name="message" 
                     rows="7"
+                    required
                   ></textarea>
                 </div>
                 <div className="text-center fs-2 mt-3 ">
