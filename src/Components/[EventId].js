@@ -14,10 +14,15 @@ export default function EventPage() {
   const [loading, setLoading] = useState(false)
 
   async function fatchData() {
-    setLoading(true)
-    const req = await axios.get("/getAllEvent/" + id.id);
-    setEvents(req.data.event);
-    setLoading(false)
+    try {
+      
+      setLoading(true)
+      const req = await axios.get("/allevent/" + id.id);
+      setEvents(req.data.event);
+      setLoading(false)
+    } catch (error) {
+      console.log(error);
+    }
   }
   useEffect(() => {
     fatchData();// eslint-disable-next-line 
